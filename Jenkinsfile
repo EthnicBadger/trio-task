@@ -11,28 +11,64 @@ pipeline {
       stage('Build Images') {
             steps {
                 sh ''' 
-                echo "Hello, Jenkins is working"
-                docker build -t 
+                echo "Hello, Starting the image build process"
+
+                # BUILDING EACH IMAGE IN TURN
+                # LATEST PLUS A VERSION NUMBERED IMAGE
+
+                docker build -t ethnicbadger/trio-task-db:latest ./db
+                docker build -t ethnicbadger/trio-task-db:${BUILD_NUMBER} ./db 
+
+                docker build -t ethnicbadger/trio-task-app:latest ./flask-app
+                docker build -t ethnicbadger/trio-task-app:${BUILD_NUMBER} ./flask-app
+
+                docker build -t ethnicbadger/trio-task-proxy:latest ./nginx
+                docker build -t ethnicbadger/trio-task-proxy:${BUILD_NUMBER} ./nginx
                 '''
             }
         }
 stage('Push Images') {
             steps {
                 sh ''' 
-                echo "Hello, Jenkins is working"
-                chmod +x run.sh
-                ./run.sh 
-                hostname
+                echo "Hello, Starting to push the images to DockerHub"
+
+                # PUSH THE NEW IMAGES TO DOCKER HUB
+
+                docker push ethnicbadger/trio-task-db
+                docker push ethnicbadger/trio-task-db:${BUILD_NUMBER}
+
+                docker push ethnicbadger/trio-task-app
+                docker push ethnicbadger/trio-task-app:${BUILD_NUMBER}
+
+                docker push ethnicbadger/trio-task-proxy
+                docker push ethnicbadger/trio-task-proxy:${BUILD_NUMBER}
+
                 '''
             }
         }
         stage('Deploy Containers') {
+            environment {
+                MYSQL_ROOT_PASSWORD = credentials('MYSQL_ROOT_PASSWORD')
+            }
             steps {
                 sh ''' 
                 echo "Hello, Jenkins is still working"
-                chmod +x run2.sh
-                ./run2.sh 
-                hostname
+
+                # NOW WE'RE GOING TO DEPLOY THE CONTAINERS BASED ON THE IMAGES GENERATED
+
+                # INVOKE SSH CONNECTION TO APP SERVER VM
+                ssh 10.200.0.20 >> EOF
+                
+                docker pull ethnicbadger/trio-task-db
+                docker pull ethnicbadger/trio-task-app
+                docker pull ethnicbadger/trio-task-proxy
+
+                docker network create trio
+                docker volume create trio
+
+                docker run -d -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -v trio:/var/lib/mysql --network trio --name mysql ethnicbadger/trio-task-db
+                docker run -d -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} --network trio --name flask-app ethnicbadger/trio-task-app
+                docker run -d -p 80:80 --network trio --name nginx ethnicbadger/trio-task-proxy
                 '''
             }
         }
