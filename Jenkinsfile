@@ -6,6 +6,7 @@ pipeline {
                 sh ''' 
                 echo "Hello, Jenkins is working"
                 echo "webhook"
+                echo "webhook2"
                 '''
             }
         }
