@@ -7,6 +7,7 @@ pipeline {
                 echo "Hello, Jenkins is working"
                 echo "webhook"
                 echo "webhook2"
+                echo "build6?"
                 '''
             }
         }
