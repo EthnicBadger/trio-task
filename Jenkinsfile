@@ -8,6 +8,7 @@ pipeline {
                 echo "webhook"
                 echo "webhook2"
                 echo "build6?"
+                echo "build7?"
                 '''
             }
         }
