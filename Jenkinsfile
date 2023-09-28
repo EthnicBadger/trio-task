@@ -5,15 +5,18 @@ pipeline {
             steps {
                 sh ''' 
                 echo "Hello, Jenkins is working"
-                echo "webhook"
-                echo "webhook2"
-                echo "build6?"
-                echo "build7?"
-                echo "hhoo test"
                 '''
             }
         }
-      stage('Pull_Repo') {
+      stage('Build Images') {
+            steps {
+                sh ''' 
+                echo "Hello, Jenkins is working"
+                docker build -t 
+                '''
+            }
+        }
+stage('Push Images') {
             steps {
                 sh ''' 
                 echo "Hello, Jenkins is working"
@@ -23,17 +26,7 @@ pipeline {
                 '''
             }
         }
-stage('BI trio-app') {
-            steps {
-                sh ''' 
-                echo "Hello, Jenkins is working"
-                chmod +x run.sh
-                ./run.sh 
-                hostname
-                '''
-            }
-        }
-        stage('BI trio-db') {
+        stage('Deploy Containers') {
             steps {
                 sh ''' 
                 echo "Hello, Jenkins is still working"
@@ -43,25 +36,6 @@ stage('BI trio-app') {
                 '''
             }
         }
-        stage('BI trio-nginx') {
-            steps {
-                sh ''' 
-                echo "Hello, Jenkins is still working"
-                chmod +x run2.sh
-                ./run2.sh 
-                hostname
-                '''
-            }
-        }
-        stage('SetNet') {
-            steps {
-                sh ''' 
-                echo "Hello, Jenkins is still working"
-                chmod +x run2.sh
-                ./run2.sh 
-                hostname
-                '''
-            }
-        }
+        
     }
 }
