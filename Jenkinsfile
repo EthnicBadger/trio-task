@@ -1,7 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Pull_Repo') {
+        stage('Greeting') {
+            steps {
+                sh ''' 
+                echo "Hello, Jenkins is working"
+                '''
+            }
+        }
+      stage('Pull_Repo') {
             steps {
                 sh ''' 
                 echo "Hello, Jenkins is working"
