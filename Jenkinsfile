@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh ''' 
                 echo "Hello, Jenkins is working"
+                echo "webhook"
                 '''
             }
         }
