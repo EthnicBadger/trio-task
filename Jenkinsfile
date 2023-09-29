@@ -75,7 +75,7 @@ stage('clean up Jenkins') {
                 # NOW WE'RE GOING TO DEPLOY THE CONTAINERS BASED ON THE IMAGES GENERATED
 
                 # INVOKE SSH CONNECTION TO APP SERVER VM
-                ssh adam-jenkins-vm2 << EOF
+                ssh 10.200.0.20 << EOF
                 
                 docker pull ethnicbadger/trio-task-db
                 docker pull ethnicbadger/trio-task-app
