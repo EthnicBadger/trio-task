@@ -82,7 +82,7 @@ stage('clean up Jenkins') {
                 docker pull ethnicbadger/trio-task-proxy
 
                 # CHECK IF NETWORK EXISTS, IF YES - SLEEP, IF NOT - CREATE IT
-                docker network inspect trio && sleep 1 || network create trio
+                docker network inspect trio && sleep 1 || docker network create trio
 
                 # CHECK IF VOLUME EXISTS, IF YES - SLEEP, IF NOT - CREATE IT
                 docker volume inspect trio && sleep 1 || docker volume create trio
