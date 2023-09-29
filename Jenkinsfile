@@ -90,7 +90,7 @@ stage('clean up Jenkins') {
                 #  TRY TO STOP SQL, IF STOP THEN REMOVE, IF WE DON'T STOP TRY REMOVE ANYWAY,  IF NOT SUCCESSFUL THEN SLEEP ANYWAY
                 docker stop mysql && (docker rm mysql) || (docker rm mysql && sleep 1 || sleep 1)
                 docker stop flask-app && (docker rm flask-app) || (docker rm flask-app && sleep 1 || sleep 1)
-                docker stop proxy && (docker rm nginx) || (docker rm nginx && sleep 1 || sleep 1)
+                docker stop nginx && (docker rm nginx) || (docker rm nginx && sleep 1 || sleep 1)
 
 
                 docker run -d -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -v trio:/var/lib/mysql --network trio --name mysql gcr.io/lbg-mea-14/ak-trio-task-db
