@@ -69,6 +69,7 @@ stage('Push Images') {
                 docker run -d -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -v trio:/var/lib/mysql --network trio --name mysql ethnicbadger/trio-task-db
                 docker run -d -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} --network trio --name flask-app ethnicbadger/trio-task-app
                 docker run -d -p 80:80 --network trio --name nginx ethnicbadger/trio-task-proxy
+                EOF
                 '''
             }
         }
