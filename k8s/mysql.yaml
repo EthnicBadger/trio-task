@@ -13,7 +13,7 @@ spec:
     env:
     - name: PASSWORD=Badger1
       value: Badger1
-    - name:MYSQL_ROOT_PASSWORD
+    - name: MYSQL_ROOT_PASSWORD
       value: Badger1
     - name: MYSQL_DATABASE
       value: flask-db
@@ -30,3 +30,5 @@ spec:
     port: 3306
     targetPort: 3306
   type: ClusterIP
+
+
