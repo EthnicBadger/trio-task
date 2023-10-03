@@ -7,14 +7,21 @@ metadata:
 spec:
   containers:
   - name: mysql
-    image: ethnicbadger/trio-task-db:latest
+    image: gcr.io/lbg-mea-14/ak-trio-task-db:latest
     ports:
     - containerPort: 3306
+    env:
+    - name: PASSWORD=Badger1
+      value: Badger1
+    - name:MYSQL_ROOT_PASSWORD
+      value: Badger1
+    - name: MYSQL_DATABASE
+      value: flask-db
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: mysql
 spec:
   selector:
     app: mysql

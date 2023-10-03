@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: ethnicbadger/trio-task-proxy:latest
+    image: gcr.io/lbg-mea-14/ak-trio-task-proxy:latest
     ports:
     - containerPort: 80
 ---
