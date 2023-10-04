@@ -13,7 +13,7 @@ class Users(db.Model):
 	last_name = db.Column(db.String(30), nullable=False)
 	email = db.Column(db.String(150), nullable=False, unique=True)
 	def __repr__(self):
-		return ''.join(['User ID: ', str(self.id), '\r\n', 'Email: ', self.email, ' Name: ', self.first_name, ' ', self.last_name, '\n'])
+		return ''.join(['User ID: ', str(self.id), '\r\n', 'Email: ', self.email, ' Name: ', self.last_name, ' ', self.first_name, '\n'])
 
 
 @app.route('/')

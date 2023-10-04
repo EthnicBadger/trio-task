@@ -34,5 +34,6 @@ spec:
       containers:
       - name: nginx-container
         image: gcr.io/lbg-mea-14/ak-trio-task-proxy:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
