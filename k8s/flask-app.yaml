@@ -41,10 +41,10 @@ spec:
         - name: MYSQLPW
           valueFrom:
             secretKeyRef:
-              name: msql-credentials
+              name: mysql-credentials
               key: MYSQL_ROOT_PASSWORD 
         - name: DBNAME
           valueFrom:
             secretKeyRef:
-              name: msql-credentials
+              name: mysql-credentials
               key: MYSQL_DATABASE

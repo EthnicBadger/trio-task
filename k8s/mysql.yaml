@@ -15,12 +15,12 @@ spec:
     - name: MYSQL_ROOT_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: msql-credentials
+          name: mysql-credentials
           key: MYSQL_ROOT_PASSWORD 
     - name: MYSQL_DATABASE
       valueFrom:
         secretKeyRef:
-          name: msql-credentials
+          name: mysql-credentials
           key: MYSQL_DATABASE
 ---
 apiVersion: v1
