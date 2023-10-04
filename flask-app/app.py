@@ -9,7 +9,7 @@ passwd = getenv('MYSQLPW')
 dbname = getenv('DBNAME')
 
 # Replace [PASSWORD] with the root password for your mysql container
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:{MYSQLPW}@mysql:3306/{DBNAME}'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:{MYSQLPW}@mysql:3306/{DBNAME}'
 
 class Users(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
